@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    let data = [2,5,6,8,4,1];
+    console.log(bubbleSort(data))
+
+
+    function bubbleSort(array) {
+        let isSwapped;
+        for(let i = array.length; i > 0; i--) {
+            // tel al van lengte array naar 0
+            isSwapped = false;
+            for(let j = 0; j < i - 1; j++) {
+                // tel op van 0 naar lengte array - 1
+                // de lengte wordt iedere itteratie met 1 verlaagd.
+                if(array[j] > array[j + 1]) {
+                    // bewaar de huidige waarden
+                    let c = array[j];
+                    let n = array[j+1];
+                    // verwissel de gevonden en volgende waarde
+                    array[j] = n;
+                    array[j+1] = c;
+                    isSwapped = true;
+                }
+            }
+            if(!isSwapped) {
+                break;
+            }
+        }
+        return array;
+    }
+</script>
+
+</body>
+</html>

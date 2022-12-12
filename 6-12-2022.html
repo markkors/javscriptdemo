@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cookie Demo</title>
+</head>
+<body>
+    <script>
+        let name = getCookie("user");
+        let last = getCookie("lastvisit");
+
+        //let name = document.cookie.name;
+        //let last = document.cookie.lastvisit
+
+
+        if(name!=null && last!=null) {
+            alert(`Welkom ${name}, je laatste bezoek was ${last}`);
+        }
+
+        let d = new Date();
+        name = prompt("wat is je naam?");
+        document.cookie="user=" + name;
+        document.cookie="lastvisit=" + d;
+
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for(let i = 0; i <ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    let v = c.substring(name.length, c.length);
+                    if(v=="null") v=null;
+                    return v;
+                }
+            }
+            return null;
+        }
+
+    </script>
+</body>
+</html>

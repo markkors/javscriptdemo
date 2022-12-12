@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array in Javascript</title>
+</head>
+<body>
+    <script>
+
+        class student {
+            constructor(n,b,g,e,c) {
+                this.name = n;
+                this.birthdate = b;
+                this.gender = g;
+                this.email = e;
+                this.cohort = c;
+            }
+        }
+
+
+        let s = new student("jan","2001-1-1","m","m@k.com",2018);
+
+
+
+        let points = [100,40,5,600];
+        points.sort((a, b) => a - b);
+        console.log(points);
+
+
+        let myArray2 = new Array();
+        myArray2["naam"] = "Piet";
+        console.log(myArray2["naam"]); // Piet
+
+
+        let student1 = {"name":"Jan","birthdata":"2001-1-1","gender":"m","email":"jan@school.com","cohort":2018}
+        let student2 = {"name":"Kees","birthdata":"2001-1-1","gender":"m","email":"jan@school.com","cohort":2018}
+        let student3 = {"name":"Truus","birthdata":"2001-1-1","gender":"f","email":"jan@school.com","cohort":2018}
+
+        let oStudenten = [student1,student2,student3];
+
+        let studenten = [
+            ['Jan','123456','2001-1-1','m','jan@school.com','2018'],
+            ['Piet','123457','2001-1-1','m','piet@school.com','2018'],
+            ['Truus','123458','2001-1-1','f','truus@school.com','2018']
+        ];
+
+        let extra = ['Kees','123456','2001-1-1','m','kees@school.com','2018']
+
+        studenten.push(extra);
+
+
+
+        class student {
+            constructor(n,b,g,e,c) {
+                this.name = n;
+                this.birthdate = b;
+                this.gender = g;
+                this.email = e;
+                this.cohort = c;
+            }
+        }
+
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cookie</title>
+</head>
+<body>
+
+<input id="value1" type="text" name="value1">
+<button onclick="saveCookie(document.getElementById('value1').value)">Sla een cookie op</button>
+
+    <script>
+        function saveCookie(v,minutes) {
+            if(minutes==undefined || minutes == null) minutes=5;
+            const date = new Date();
+            date.setTime(date.getTime()+(minutes*60*1000));
+            const expires = ";expires="+date.toGMTString();
+            document.cookie = `mycookie=${v}${expires}`;
+        }
+
+        function readCookie(n) {
+            let items = document.cookie.split(';');
+            let v = null;
+            items.forEach((item) => {
+               if (item.split("=")[0] == n) {
+                   // cookie gevonden
+                   v=item.split("=")[1];
+               }
+            });
+            return v;
+        }
+
+        document.addEventListener("DOMContentLoaded",(e) => {
+            let c = readCookie("mycookies");
+            console.log(c);
+        });
+    </script>
+</body>
+</html>

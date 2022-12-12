@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+  let a = [1,2,3,4,5];
+  b = shuffleArray(a);
+
+
+
+  function shuffleArray(array) {
+    // Create a new array to hold the shuffled elements
+    let shuffledArray = [];
+
+    // Iterate through the original array and randomly select
+    // an element to add to the shuffled array
+    while (array.length > 0) {
+      // Generate a random index between 0 and the length of the array
+      let randomIndex = Math.floor(Math.random() * array.length);
+
+      // Add the element at the random index to the shuffled array
+      shuffledArray.push(array[randomIndex]);
+
+      // Remove the element from the original array to prevent it from being selected again
+      array.splice(randomIndex, 1);
+    }
+
+    // Return the shuffled array
+    return shuffledArray;
+  }
+
+</script>
+</body>
+</html>

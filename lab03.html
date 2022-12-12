@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<div id="result1"></div>
+<div id="result2"></div>
+<div id="result3"></div>
+<div id="result4"></div>
+<div id="result5"></div>
+<div id="result6"></div>
+<div id="result7"></div>
+<div id="result8"></div>
+
+<script>
+    //let testarray = new Array();
+    //let testarray = new Array("een","twee",3,"vier","vijf");
+    let testarray = ["een","twee",3,"vier","vijf"];
+
+   /* testarray[0]="een";
+    testarray[1]="twee";
+    testarray[2]= 3;
+    testarray[3]="vier";
+    testarray[4]="vijf";*/
+
+    console.log(testarray);
+    document.getElementById("result1").innerHTML = "stap 1:" + testarray;
+
+    console.log(typeof testarray[4]);
+    document.getElementById("result2").innerHTML = typeof testarray[4];
+
+    testarray.pop();
+    document.getElementById("result3").innerHTML = testarray;
+
+    testarray.unshift("nul");
+    document.getElementById("result4").innerHTML = testarray;
+
+    delete testarray[0];
+    //testarray.shift();
+    document.getElementById("result5").innerHTML = testarray;
+
+    testarray.shift();
+    document.getElementById("result6").innerHTML = testarray;
+
+    testarray.splice(1,1);
+    document.getElementById("result7").innerHTML = testarray;
+
+    if(testarray[2] !== undefined) {
+        testarray.splice(2,1);
+        //document.getElementById("result8").innerHTML = testarray;
+    }
+
+    document.getElementById("result8").innerHTML = testarray;
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="output"></div>
+
+<script>
+
+    let student1 = {"naam" : "jan","age":20, "gender": "m","birth": "2001-11-1"};
+    let student2 = {"naam" : "piet","age":20, "gender": "m","birth": "2001-11-1"};
+    let student3 = {"naam" : "klaas","age":20, "gender": "m","birth": "2001-11-1"};
+    let student4 = {"naam" : "kees","age":20, "gender": "m","birth": "2001-11-1"};
+
+
+    let studenten = [];
+
+    studenten.push(student3);
+    studenten.push(student2);
+    studenten.push(student1);
+
+    studenten.splice(0,0,student4);
+
+    let removed = studenten.splice(2,2);
+
+
+
+
+
+    //document.getElementById("output").innerText = myarray;
+
+
+
+
+
+</script>
+</body>
+</html>

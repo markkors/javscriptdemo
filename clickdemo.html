@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+    .container {
+        border:1px solid black;
+        display: flex;
+        width: 50%;
+        padding: 2%;
+    }
+
+    .flexcol {
+        display: flex;
+        flex-direction: column;
+        flex:1;
+    }
+</style>
+<body>
+
+
+
+
+    <div class="container">
+        <div class="flexcol">
+            <div>
+                selecteer een maand
+            </div>
+            <div>
+                <select id="maand">
+                    <option value="0">jan</option>
+                    <option value="1">feb</option>
+                    <option value="2">mrt</option>
+                    <option value="3">apr</option>
+                    <option value="4">mei</option>
+                    <option value="5">jun</option>
+                    <option value="6">jul</option>
+                    <option value="7">aug</option>
+                    <option value="8">sep</option>
+                    <option value="9">okt</option>
+                    <option value="10">nov</option>
+                    <option value="11">dec</option>
+                </select>
+            </div>
+        </div>
+        <div class="flexcol">
+            <div>Vul een jaar in</div>
+            <div>
+                <input type="number" id="year">
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="flexcol">
+            <button onclick="createCalender();">Maak kalender</button>
+        </div>
+    </div>
+
+    <div class="container" id="kalender">
+        <div class="flexcol">
+            <div>en de kalender komt hier</div>
+        </div>
+    </div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded",function() {
+        document.getElementById("year").value = new Date().getFullYear();
+    });
+
+
+    function createCalender() {
+        let m = document.getElementById("maand").value;
+        let y = document.getElementById("year").value;
+        alert(`maak de kalender nu maand: (${m})  / jaar: ${y}`);
+
+        // wat is de eerste dag van de maand
+        let fdm = new Date(y,m,1).getDay();
+        // wat is de laatste?
+        let ldm = new Date(y,m+1,0).getDate();
+
+
+        for(let m = fdm;m<ldm+1;m++) {
+            console.log(`${m} - ${m % 7}`);
+        }
+
+
+
+
+    }
+</script>
+
+
+
+</body>
+</html>

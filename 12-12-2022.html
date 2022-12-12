@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .bord {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .cell {
+            border: 1px solid black;
+            width: 100px;
+            height: 100px;
+
+        }
+
+        .cell:hover {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+
+
+<div id="bord_container"></div>
+
+<script>
+    let bord_info = [
+        [
+            {"bom":false},
+            {"bom":false},
+            {"bom":false},
+            {"bom":false},
+            {"bom":false},
+        ],
+        [
+            {"bom":false},
+            {"bom":false},
+            {"bom":false},
+            {"bom":false},
+            {"bom":false},
+        ],
+        [
+            {"bom":false},
+            {"bom":false},
+            {"bom":false},
+            {"bom":false},
+            {"bom":false},
+        ],
+        [
+            {"bom":false},
+            {"bom":false},
+            {"bom":true},
+            {"bom":false},
+            {"bom":false},
+        ],
+        [
+            {"bom":false},
+            {"bom":false},
+            {"bom":false},
+            {"bom":false},
+            {"bom":false},
+        ],
+    ]
+
+
+
+    let cont = document.getElementById("bord_container");
+
+    for (let rij=0;rij<bord_info.length;rij++) {
+        // maak hier eem rij div
+        let re = document.createElement("div")
+        re.setAttribute("class","row")
+
+
+        for(let col=0;col<bord_info[rij].length;col++) {
+            // voeg hier aan die rij eem cell toe
+            let ce = document.createElement("div")
+            ce.setAttribute("class","cell");
+            ce.addEventListener("click",function(event) {
+                checkbom(rij,col);
+            })
+            //ce.innerText = bord_info[rij][col].bom
+            re.appendChild(ce);
+        }
+        // voeg rij toe aan bord
+        cont.appendChild(re);
+
+    }
+
+    function checkbom(r,c) {
+        console.log(bord_info[r][c])
+        if(bord_info[r][c].bom == true) {
+            alert("boem!!!!");
+        }
+    }
+</script>
+</body>
+</html>

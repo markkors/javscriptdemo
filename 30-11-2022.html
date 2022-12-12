@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .auto_plaatje {
+        width: 40%;
+    }
+
+
+</style>
+<body>
+
+<div id="garage"></div>
+
+<script>
+
+    let cijfer = 5;
+    let geslaagd = (cijfer >= 6) ? "goed zo geslaagd" : "helaas niet geslaagd";
+
+
+
+
+    let a = 1;
+    let b = 2;
+
+    let persoon = {naam:"jan",leeftijd:23}
+
+    for(p in persoon) {
+        console.log(persoon.p);
+
+    }
+
+
+    switch (true) {
+        case (a > 0 && b == 2):
+            console.log("case 1 is waar");
+            break;
+        default:
+
+    }
+
+    if(a < 1) {
+        // wat als het waar is;
+        //
+
+    } else if(a == 1) {
+
+    } else {
+
+    }
+
+
+
+    let cars = [
+        {model:"BMW",type:"320i",color:"white",url:"https://media.autoweek.nl/m/vjtykxwbit81.jpg"},
+        {model:"AUDI",type:"TT",color:"blue", url:"https://media.autoweek.nl/m/p9oytgmbbm9j.jpg"},
+        {model:"MERCEDES",type:"GLE SUV",color:"white",url:"https://media.autoweek.nl/m/f5lyc7cbbf0r_360.jpg"}
+        ];
+
+
+
+    
+    let garage_element = document.getElementById("garage");
+    cars.forEach(function(oCar) {
+        let car_element = document.createElement("div");
+        car_element.innerText = `${oCar.model} ${oCar.type} ${oCar.color}`
+        garage_element.appendChild(car_element);
+        let car_image = document.createElement("img");
+        car_image.setAttribute("src",oCar.url);
+        car_image.classList.add("auto_plaatje")
+        garage_element.appendChild(car_image);
+    });
+
+
+
+    cars.forEach(function(oCar) {
+        Object.keys(oCar).forEach(function(k) {
+            console.log(k);
+            //console.log(`${entry[0]} : ${entry[1]}`);
+        });
+
+        Object.values(oCar).forEach(function(v) {
+            console.log(v)
+        })
+
+        Object.entries(oCar).forEach(function(e) {
+            console.log(e)
+        })
+
+    });
+
+
+    // met een arrow functie kan dit ook
+    cars.forEach((oCar) => {
+        //console.log(oCar);
+    });
+
+    for(c in cars) {
+        console.log(c);
+    }
+
+
+</script>
+
+
+</body>
+</html>

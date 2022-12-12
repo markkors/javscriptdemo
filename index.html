@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+
+</head>
+
+<body>
+
+<div id="item1"></div>
+<div id="item2"></div>
+<div id="item3"></div>
+
+
+<script>
+
+
+    function persoon(f,l) {
+        this.voornaam = f;
+        this.achternaam = l;
+        return;
+    }
+
+
+    let personen = [];
+
+    let p1 = new persoon("mark","kors");
+    let p2 = new persoon("jan","doedel");
+    let p3 = new persoon("piet","doedel");
+
+    personen.push(p1,p2,p3);
+
+
+
+
+
+    for(let i=0;i<personen.length;i++) {
+        // dit wordt uitgevoerd in de lus
+        let ele = createItem("div","Dit is:" + personen[i].voornaam);
+        document.body.appendChild(ele);
+    }
+
+
+
+
+
+
+
+function createItem(type,value) {
+    let e = document.createElement(type);
+    e.innerText = value;
+    return e;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*let k = getFromIsland(0);
+    console.log(k);
+
+    function getFromIsland(w) {
+        let boom = true;
+        let water = w;
+        let kokosnoot = {"weight":0,"size":0};
+        if(boom && water>0) {
+            kokosnoot.size=w*2;
+            kokosnoot.weight=w*3
+        }
+        return kokosnoot;
+    }
+
+*/
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

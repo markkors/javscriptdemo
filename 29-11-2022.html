@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .persoon {
+            color:red;
+        }
+    </style>
+</head>
+<body>
+
+<div id="personen">
+
+</div>
+
+<script src="js/script.js"></script>
+
+<script>
+
+    let personen = [
+        {"naam":"jan","leeftijd":23,"woonplaats":"amersfoort"},
+        {"naam":"piet","leeftijd":20,"woonplaats":"utrecht"},
+        {"naam":"klaas","leeftijd":18,"woonplaats":"amsterdam"},
+        {"naam":"truus","leeftijd":19,"woonplaats":"amersfoort"},
+    ]
+
+    let personen_container = document.getElementById("personen")
+    for(let c = 0; c<personen.length;c++) {
+        // voeg het element uit de functie toe als kind aan de personen_container
+       personen_container.appendChild(getPersonOverview(personen[c]));
+    }
+
+
+
+    function getPersonOverview (oPerson) {
+        // maak een div element aan voor ieder persoon
+        let p = document.createElement("div");
+        // zet de class van dit element op "persoon"
+        p.setAttribute("class","persoon")
+        // maak een div element aan
+        let n = document.createElement("div");
+        // de naam van de persoon als innertext in de div
+        n.innerText = oPerson.naam;
+        // voeg element toe aan persoon div
+        p.appendChild(n);
+        // doe dit vervolgens ook voor de leeftijd en woonplaats
+        let l = document.createElement("div");
+        l.innerText = oPerson.leeftijd;
+        p.appendChild(l)
+        let w = document.createElement("div");
+        w.innerText = oPerson.woonplaats;
+        p.appendChild(w);
+        return p; // return het complete html element (van een persoon)
+    }
+
+
+    
+
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+
+<div>
+    <form name="tripform" onsubmit="calculate(event)">
+        <select id="start" name="start">
+            <option value="ams">amsterdam</option>
+            <option value="ame">amersfoort</option>
+            <option value="rot">rotterdam</option>
+            <option value="utr">utrecht</option>
+        </select>
+
+        <select id="dest" name="dest">
+            <option value="ams">amsterdam</option>
+            <option value="ame">amersfoort</option>
+            <option value="rot">rotterdam</option>
+            <option value="utr">utrecht</option>
+        </select>
+
+        <input type="submit" value="verstuur" name="submit">
+    </form>
+
+    <div id="route"></div>
+</div>
+<script>
+
+    function bullshit(e) {
+        console.log(e.target.start.options[e.target.start.selectedIndex].value);
+        console.log(e.target.dest.options[e.target.dest.selectedIndex].value);
+        return false
+    }
+
+    let data = new Array(
+        {start:"ams",dest:{ams:0,rot:45,utr:35,ame:40}},
+        {start:"rot",dest:{ams:45, rot:0,utr:50,ame:40}},
+        {start:"ame",dest:{ams:40, rot:75,utr:25,ame:0}},
+        {start:"utr",dest:{ams:35, rot:50,utr:0,ame:25}}
+    );
+
+
+    function calculate(e) {
+        e.preventDefault();
+        let f = e.target;
+        console.log(f.start)
+        let s = f.start.options[f.start.selectedIndex].value
+        let d = f.dest.options[f.dest.selectedIndex].value
+
+        // zoek in data naar record met startpunt
+        let found = Object.entries(data).find(function(v,k) {
+            if (data[k].start == s) {
+                return data[k];
+            }
+        });
+
+        //console.log(found[1].dest[d])
+        document.getElementById("route").innerText = found[1].dest[d];
+        return true;
+    }
+
+
+
+   /* let found = Object.entries(data).find(function(v,k) {
+        if (data[k].start == 'ams') {
+            return data[k];
+        }
+    });*/
+    //let found = Object.entries(data).find((item) => item['start'] = 'ams');
+
+   /* console.log(found[1].dest)
+*/
+
+
+
+</script>
+</body>
+</html>

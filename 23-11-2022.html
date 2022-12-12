@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div id="container"></div>
+
+<script>
+// Dit is de oefening met de sterren *
+// nog wel even met document.write()...
+// let goed op de locatie van de <br>
+// deel 1
+    for(let rij = 0;rij < 10;rij++) {
+        for(let col=0;col<=rij;col++) {
+            document.write("*");
+        }
+        document.write("<br>");
+    }
+
+// Hier tellen we terug van 10 naar 0
+// deel 2
+    for(let rij = 10;rij >= 0;rij--) {
+        for(let col=0;col<=rij;col++) {
+            document.write("*");
+        }
+        document.write("<br>");
+    }
+
+
+
+// Een praktische toepassing van een lus in een lus
+    let studenten = [
+        ["jan",23],
+        ["piet",25],
+        ["truus",20]
+    ]
+
+// dit is het container element
+let c = document.getElementById("container");
+// We starten een lus en betreden de lus voor iedere student
+for (let s = 0;s < studenten.length;s++) {
+    // maak een nieuw div element
+    let es = document.createElement("div");
+    // en dan nu de items doorlopen voor iedere student
+    for(sp = 0;sp < studenten[s].length;sp++) {
+        // maak voor ieder item in de student een div element aan
+        let esp = document.createElement("div");
+        esp.innerText=studenten[s][sp];
+        // voeg dit item toe aan de student div
+        es.appendChild(esp)
+    }
+    // voeg het geheel toe aan de container
+    c.appendChild(es);
+}
+
+
+// Kan dat ook met studenten als object?
+// Een praktische toepassing van een lus in een lus
+
+studenten = [
+    {naam:"jan",age:23},
+    {naam:"piet",age:25},
+    {naam:"truus",age:20}
+]
+
+// We starten een lus en betreden de lus voor iedere student
+for (let s = 0;s < studenten.length;s++) {
+    // maak een nieuw div element
+    let es = document.createElement("div");
+    // En dan nu de items doorlopen voor iedere student
+    // Hier introduceer ik een nieuw object: Object
+    // Met Object kun je de keys en values methoden gebruiken om objectgegevens uit te lezen
+    for(sp = 0;sp < Object.keys(studenten[s]).length;sp++) {
+        // maak voor iedere key (property) in het student object een div element aan
+        let esp = document.createElement("div");
+        // lees de keys: value waarde uit van de student en zet deze in de div
+        esp.innerText=`${Object.keys(studenten[s])[sp]} : ${Object.values(studenten[s])[sp]}`;
+        // voeg dit item toe aan de student div
+        es.appendChild(esp)
+    }
+    // voeg het geheel toe aan de container
+    c.appendChild(es);
+}
+
+
+
+</script>
+</body>
+</html>

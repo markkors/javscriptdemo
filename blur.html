@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+    .enableBlur>* {
+        filter: blur(1.2px);
+    }
+
+    .disableBlur {
+        filter: blur(0);
+    }
+</style>
+<body>
+<div class="enableBlur">
+    <hr>
+    qqqqq<br>
+    <span>qqqqq</span><br>
+    <hr  class="disableBlur">
+    <div>aaaaa</div>
+    <div>bbbbb</div>
+    <div class="disableBlur">DDDDD</div>
+    <hr>
+    <img src="https://lh5.googleusercontent.com/-n8FG4f09-ug/AAAAAAAAAAI/AAAAAAAACmA/ldtxmWX1SyY/photo.jpg?sz=48">
+    <img class="disableBlur" src="https://lh5.googleusercontent.com/-n8FG4f09-ug/AAAAAAAAAAI/AAAAAAAACmA/ldtxmWX1SyY/photo.jpg?sz=48">
+</div>
+</body>
+</html>

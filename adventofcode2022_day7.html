@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    let fs = []
+    let last_parent_node = null;
+
+    function node(t,n) {
+        this.type=t;
+        this.name=n;
+        this.nodes=[];
+    }
+
+
+    function folder() {
+        this.foldername;
+        this.files=[];
+        this.size = function() {
+            return this.files.reduce(function(a,b) {
+                if(!isNaN(parseInt(a)) && !isNaN(parseInt(b))) {
+                    return parseInt(a)+parseInt(b);
+                }
+            })
+        }
+    }
+
+
+    let commands = [];
+    let folders = [];
+    fetch("day7.txt").then((response) => response.text())
+        .then(text=>{
+            text.split('\n').forEach(item=>{
+               commands.push(item.slice(0,-1));
+            });
+            //console.log(commands);
+            //doScan()
+            readFileSystem();
+    });
+
+
+
+function readFileSystem() {
+    for(let c=0;c<commands.length;c++) {
+        if(commands[c][0]=="$") {
+            if(commands[c].substring(0,4)== "$ cd") {
+
+
+
+            }
+
+            continue;
+        } else {
+            // get last folder and add folders with a numeric size to it
+
+
+        }
+    }
+}
+
+
+
+function doScan() {
+
+    for(let c=0;c<commands.length;c++) {
+        if(commands[c][0]=="$") {
+            if(commands[c] == "$ ls") {
+                // detected ls command
+                let f = new folder();
+                f.foldername = commands[c-1]
+                folders.push(f);
+            }
+            continue;
+        } else {
+            // get last folder and add folders with a numeric size to it
+            if(isNumeric(commands[c].split(" ")[0])) {
+                folders[folders.length-1].files.push(commands[c].split(" ")[0])
+            }
+
+        }
+        //console.log(commands[c]);
+    }
+}
+
+function isNumeric(str) {
+    if (typeof str != "string") return false // we only process strings!
+    return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+        !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
+}
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
