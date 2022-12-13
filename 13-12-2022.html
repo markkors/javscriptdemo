@@ -23,29 +23,42 @@
 
 
 <button onclick="doejeding()">Add element</button>
-<button onclick="stopInterval()">Stop de tijd</button>
+<button id="btnClock">Start de tijd</button>
 
 <script>
 
-    setTimeout(function () {
-        let spel = document.getElementById("spel");
-        spel.innerHTML = "dit is een spel";
-    }, 1000);
+    let clockrunning = false;
+    let h = null;
+    document.getElementById("btnClock").addEventListener("click",function (event) {
+        if(clockrunning) {
+            event.target.innerText = "Start de tijd";
+            stopInterval()
+            clockrunning = false;
+        } else {
+            event.target.innerText = "Stop de tijd";
+            h = startclock()
+            clockrunning = true;
+        }
+    });
 
-    let h = setInterval(function () {
-        let clock = document.getElementById("clock");
-        let d = new Date();
-        clock.innerHTML = d.toLocaleTimeString();
-    }, 1000);
+
+    function startclock() {
+        return setInterval(function () {
+            let clock = document.getElementById("clock");
+            let d = new Date();
+            clock.innerHTML = d.toLocaleTimeString();
+        }, 1000);
+    }
+
+    function stopInterval() {
+        clearInterval(h);
+    }
 
 
     function whoisthis(e) {
         console.log(e.innerText);
     }
 
-    function stopInterval() {
-        clearInterval(h);
-    }
 
     let spel = document.getElementById("spel");
     function doejeding() {
