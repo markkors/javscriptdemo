@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .backred {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+   <div onclick="whoisthis(this)">woord 1</div>
+   <div onclick="whoisthis(this)">woord 2</div>
+   <div onclick="whoisthis(this)">woord 3</div>
+</div>
+
+<div id="spel"></div>
+
+
+<button onclick="doejeding()">Add element</button>
+
+<script>
+
+    function whoisthis(e) {
+        console.log(e.innerText);
+    }
+
+
+    let spel = document.getElementById("spel");
+    function doejeding() {
+        let div = document.createElement("div");
+
+        div.innerText = "dit is een test";
+        div.addEventListener("click",function (event) {
+            console.log(event.target);
+            div.classList.toggle("backred");
+        });
+
+       /* div.addEventListener("mousemove",function(event) {
+            console.log(event.x,event.y);
+        })*/
+        spel.appendChild(div);
+    }
+
+
+
+</script>
+</body>
+</html>
