@@ -18,22 +18,38 @@
    <div onclick="whoisthis(this)">woord 3</div>
 </div>
 
+<div id="clock"></div>
 <div id="spel"></div>
 
 
 <button onclick="doejeding()">Add element</button>
+<button onclick="stopInterval()">Stop de tijd</button>
 
 <script>
+
+    setTimeout(function () {
+        let spel = document.getElementById("spel");
+        spel.innerHTML = "dit is een spel";
+    }, 1000);
+
+    let h = setInterval(function () {
+        let clock = document.getElementById("clock");
+        let d = new Date();
+        clock.innerHTML = d.toLocaleTimeString();
+    }, 1000);
+
 
     function whoisthis(e) {
         console.log(e.innerText);
     }
 
+    function stopInterval() {
+        clearInterval(h);
+    }
 
     let spel = document.getElementById("spel");
     function doejeding() {
         let div = document.createElement("div");
-
         div.innerText = "dit is een test";
         div.addEventListener("click",function (event) {
             console.log(event.target);
