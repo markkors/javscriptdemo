@@ -96,17 +96,16 @@
         for(let i=0;i<boarddata.length;i++) {
 
 
-            if(i%4==0) {
+           if(i%4==0) {
                 // zitten we dus in de 0,4,8,12 rij
                 row=document.createElement("div");
                 row.setAttribute("class","row");
-            }
+           }
 
             let e = document.createElement("div");
             /*e.innerText = boarddata[i].name;*/
             e.setAttribute("id",i)
-            e.setAttribute("class","cell")
-
+            e.setAttribute("class","cell");
 
 
             let ei = document.createElement("i");

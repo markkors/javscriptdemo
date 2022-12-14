@@ -80,13 +80,20 @@
 
         // wat is de eerste dag van de maand
         let fdm = new Date(y,m,1).getDay();
+
         // wat is de laatste?
         let ldm = new Date(y,m+1,0).getDate();
 
 
-        for(let m = fdm;m<ldm+1;m++) {
-            console.log(`${m} - ${m % 7}`);
+        //for(let m = fdm;m<ldm+1;m++) {
+            //console.log(`${m} - ${m % 7}`);
+        //}
+
+        for (d=0;d<ldm;d++) {
+            console.log(d+1)
+
         }
+
 
 
 

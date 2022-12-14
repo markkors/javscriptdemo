@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game demo 2</title>
+    <style>
+        #bord {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .row > div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            display: flex ;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .red {color: red}
+
+        i {
+            font-size: 5em ;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/d60d30384a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+
+
+<div id="bord"></div>
+
+<script>
+
+let eboard = document.getElementById("bord")
+let boarddata = [
+    {name:"fa-solid fa-music",point:0,color:"green"},
+    {name:"fa-brands fa-discord",point:0,color:"yellow"},
+    {name:"yourname",point:0,color:"white"},
+    {name:"yourname",point:0,color:"white"},
+    {name:"yourname",point:0,color:"white"},
+    {name:"yourname",point:0,color:"white"},
+    {name:"yourname",point:0,color:"white"},
+    {name:"yourname",point:0,color:"white"},
+    {name:"yourname",point:0,color:"white"},
+    {name:"yourname",point:0,color:"white"},
+    {name:"yourname",point:0,color:"white"},
+    {name:"yourname",point:0,color:"white"},
+    {name:"yourname",point:0,color:"white"},
+    {name:"yourname",point:0,color:"white"},
+    {name:"yourname",point:0,color:"white"},
+    {name:"yourname",point:0,color:"white"}
+]
+
+
+function selectelement(e) {
+    console.log(e);
+}
+
+document.addEventListener("DOMContentLoaded",function() {
+    initBoard();
+})
+
+
+let row = null;
+
+function initBoard() {
+   /* boarddata.forEach(function(item) {
+        //console.log(item);
+    });*/
+
+    for(let i=0;i<boarddata.length;i++) {
+        if(i%4==0) {
+            row = document.createElement("div");
+            row.setAttribute("class","row");
+        }
+        let cell = document.createElement("div");
+        cell.setAttribute("class","red")
+        cell.addEventListener("click",function(event) {
+            toggle(event.target)
+        })
+        let i_e = document.createElement("i");
+        i_e.setAttribute("class",boarddata[i].name)
+        i_e.setAttribute("id",i)
+
+       /* i_e.addEventListener("click",function(event) {
+            //console.log(event.target)
+            getItem(event.target.id)
+        });*/
+        cell.appendChild(i_e)
+        row.appendChild(cell);
+        eboard.appendChild(row);
+    }
+
+}
+
+function getItem(i) {
+    console.log(boarddata[i]);
+}
+
+function toggle(e) {
+    console.log(e);
+
+    e.classList.toggle("red");
+
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Game</title>
+    <script src="https://kit.fontawesome.com/d60d30384a.js" crossorigin="anonymous"></script>
+    <style>
+        #bord_container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .cell {
+            width: 150px;
+            height: 150px;
+            border: 1px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        i {
+            font-size: 3em;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="board_container"></div>
+
+
+<script>
+
+    let startscore = 100;
+    let board_container = document.getElementById("board_container");
+
+    let icons = [
+        {name:"fa-solid fa-biohazard", points:20,visible:false},
+        {name:"fa-solid fa-bomb", points:15,visible:false},
+        {name:"fa-solid fa-joint", points:10},
+        {name:"fa-solid fa-virus-covid", points:10,visible:false},
+        {name:"fa-solid fa-heart", points:-10,visible:false},
+        {name:"fa-solid fa-solar-panel", points:-15,visible:false},
+        {name:"fa-solid fa-apple-whole", points:-10,visible:false},
+        {name:"fa-solid fa-person-running", points:-20,visible:false}
+    ]
+
+    let boarddata = [];
+
+    document.addEventListener("DOMContentLoaded",function (){
+        createboard();
+    })
+
+    function createboard() {
+        while (boarddata.length<16) {
+            shuffleArray(icons).forEach(function(item) {
+               boarddata.push(item)
+            });
+        }
+
+        let c = 0;
+
+        let row = null;
+
+        boarddata.forEach(function(item) {
+            // use modulo (remainder) operator to get each 4th item, starting with the first one
+            if(c%4==0) {
+                // new row
+                row = document.createElement("div");
+                row.setAttribute("class","row");
+            }
+
+            let cell = document.createElement("div");
+            cell.addEventListener("click",function(event) {
+                togglecell(event.target);
+            });
+            cell.setAttribute("class","cell");
+            cell.setAttribute("id",c);
+            let i = document.createElement("i");
+            i.setAttribute("class","fa-solid fa-question");
+            i.addEventListener("click",function(event) {
+                togglecell(event.target.parentElement)
+                event.cancelBubble=true;
+            })
+            cell.appendChild(i)
+            row.appendChild(cell);
+
+            board_container.appendChild(row);
+            c++;
+        });
+
+    }
+
+    function togglecell(e) {
+        let item = boarddata[e.id];
+        if(item.visible==false) {
+            e.childNodes[0].setAttribute("class",`${item.name}`);
+            item.visible=true;
+        } else {
+            e.childNodes[0].setAttribute("class","fa-solid fa-question");
+            item.visible=false;
+        }
+    }
+
+
+    function shuffleArray(array) {
+        // create a clone of the array first
+        let input = array.slice();
+        // Create a new array to hold the shuffled elements
+        let shuffledArray = [];
+        // Iterate through the original array and randomly select
+        // an element to add to the shuffled array
+        while (input.length > 0) {
+            // Generate a random index between 0 and the length of the array
+            let randomIndex = Math.floor(Math.random() * input.length);
+            // Add the element at the random index to the shuffled array
+            shuffledArray.push(input[randomIndex]);
+            // Remove the element from the original array to prevent it from being selected again
+            input.splice(randomIndex, 1);
+        }
+        // Return the shuffled array
+        return shuffledArray;
+    }
+
+</script>
+</body>
+</html>
