@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game flow demo</title>
+    <style>
+        .spelcontainer {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+        }
+
+
+        .cell {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        i {
+            font-size: 5em;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/d60d30384a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+
+
+
+<div id="container" class="spelcontainer">
+<!--    <div class="row">
+        <div class="cell">
+            <i class="fa-sharp fa-solid fa-paperclip"></i>
+        </div>
+        <div class="cell">
+            <i class="fa-sharp fa-solid fa-chess-knight"></i>
+        </div>
+        <div class="cell">3</div>
+        <div class="cell">4</div>
+    </div>
+    <div class="row">
+        <div class="cell">5</div>
+        <div class="cell">6</div>
+        <div class="cell">7</div>
+        <div class="cell">8</div>
+    </div>
+    <div class="row">
+        <div class="cell">5</div>
+        <div class="cell">6</div>
+        <div class="cell">7</div>
+        <div class="cell">8</div>
+    </div>
+    <div class="row">
+        <div class="cell">5</div>
+        <div class="cell">6</div>
+        <div class="cell">7</div>
+        <div class="cell">8</div>
+    </div>-->
+
+</div>
+
+
+<script>
+    let boarddata = [
+        {name: "fa-sharp fa-solid fa-paperclip", point:0},
+        {name: "fa-sharp fa-solid fa-chess-knight", point:0},
+        {name: "fa-solid fa-headphones", point:0},
+        {name: "iets", point:0},
+        {name: "iets", point:0},
+        {name: "iets", point:0},
+        {name: "iets", point:0},
+        {name: "iets", point:0},
+        {name: "iets", point:0},
+        {name: "iets", point:0},
+        {name: "iets", point:0},
+        {name: "iets", point:0},
+        {name: "iets", point:0},
+        {name: "iets", point:0},
+        {name: "iets", point:0},
+        {name: "iets", point:0},
+
+    ]
+
+    let ec = document.querySelector("#container");
+    let row = null;
+
+    function createboard() {
+        for(let i=0;i<boarddata.length;i++) {
+
+
+            if(i%4==0) {
+                // zitten we dus in de 0,4,8,12 rij
+                row=document.createElement("div");
+                row.setAttribute("class","row");
+            }
+
+            let e = document.createElement("div");
+            /*e.innerText = boarddata[i].name;*/
+            e.setAttribute("id",i)
+            e.setAttribute("class","cell")
+
+
+
+            let ei = document.createElement("i");
+            ei.setAttribute("class",boarddata[i].name)
+            ei.setAttribute("id",i);
+            ei.addEventListener("click",function(event){
+               // dit als er geklikt wordt op het plaatjeconsole.log(event.target);
+                //console.log(event.target)
+                toggleCell(event.target);
+            });
+
+
+            e.appendChild(ei);
+
+            row.appendChild(e);
+
+
+            ec.appendChild(row);
+
+
+
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded",function() {
+        // als alles is geladen doe dan deze functie
+        createboard();
+    });
+
+    function toggleCell(e) {
+        //console.log(e.id);
+        console.log(boarddata[e.id]);
+    }
+
+</script>
+
+</body>
+</html>
