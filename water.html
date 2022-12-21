@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Water</title>
+    <style>
+        body {
+            font-family: Arial;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .cell {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .bucket {
+            position: relative;
+          /*  border-left: 2px solid black;
+            border-right: 2px solid black;
+            border-bottom: 2px solid black;*/
+           /* background-image: url("images/glas.png");
+            background-size: cover;
+            background-repeat: no-repeat;*/
+            width: 75px;
+            height: 125px;
+        }
+
+        .bucket::before {
+            content: '';
+            background: url('images/glas.png') no-repeat center center/cover;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 75px;
+            height: 125px;
+            z-index: -1;
+        }
+
+
+        .bucket:has(.water) {
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+
+        .water {
+            position: absolute;
+            z-index: -2;
+            transform-origin: bottom left;
+            transform: scaleY(0);
+            width: 70px;
+            height: 123px;
+            background-color: aqua;
+
+        }
+
+        .fill {
+            transition-property: all;
+            transition-duration: 2s;
+            transform: scaleY(1);
+        }
+
+        .empty {
+            transition-property: all;
+            transition-duration: 2s;
+            transform: scaleY(0);
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <div class="row">
+        <div class="cell">
+            <div id="bucket1" class="bucket" onclick="start()">
+                <div class="water empty"></div>
+            </div>
+        </div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+    </div>
+        <div class="row">
+        <div class="cell"></div>
+        <div class="cell">
+            <div id="bucket2" class="bucket">
+                <div class="water empty"></div>
+            </div>
+        </div>
+        <div class="cell"></div>
+    </div>
+    <div class="row">
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell">
+            <div id="bucket3" class="bucket">
+                <div class="water empty"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+
+
+
+    function start() {
+        //document.querySelector("#bucket1 .water").classList.toggle("fill");
+        //document.querySelector("#bucket1 .water").classList.toggle("empty");
+        document.querySelector("#bucket1 .water").classList.replace("empty","fill");
+
+
+        setTimeout(function() {
+            document.querySelector("#bucket1 .water").classList.toggle("fill")
+            document.querySelector("#bucket1 .water").classList.toggle("empty");
+            document.querySelector("#bucket2 .water").classList.toggle("fill");
+            document.querySelector("#bucket2 .water").classList.toggle("empty");
+
+            setTimeout(function() {
+                document.querySelector("#bucket2 .water").classList.toggle("empty");
+                document.querySelector("#bucket2 .water").classList.toggle("fill");
+                document.querySelector("#bucket3 .water").classList.toggle("empty");
+                document.querySelector("#bucket3 .water").classList.toggle("fill");
+                setTimeout(function() {
+                    pumpitup();
+                },2000)
+
+            },2000)
+        },2000)
+    }
+
+    function pumpitup() {
+        document.querySelector("#bucket3 .water").classList.toggle("fill");
+        document.querySelector("#bucket3 .water").classList.toggle("empty");
+        start();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .boven {
+            position: relative;
+            /*background-color: hotpink;*/
+            width: 50px;
+            height: 100px;
+            border-left: 2px solid;
+            border-right: 2px solid ;
+            border-bottom: 2px solid;
+        }
+
+        .onder {
+            position: absolute;
+            background-color: aquamarine;
+            z-index: -1;
+            width: 50px;
+            height: 100px;
+            transform-origin: left bottom;
+        }
+
+        .empty {
+            transform: scaleY(0);
+        }
+
+        .leeg {
+            transition-property: all;
+            transition-duration: 2s;
+            transform: scaleY(0);
+        }
+
+        .vol {
+            transition-property: all;
+            transition-duration: 2s;
+            transform: scaleY(1);
+        }
+
+    </style>
+
+</head>
+<body>
+    <div id="beker1" class="boven" onclick="start()">
+        <div id="water1" class="onder"></div>
+    </div>
+
+    <div id="beker2" class="boven" >
+        <div id="water2" class="onder"></div>
+    </div>
+
+    <div id="beker3" class="boven" >
+        <div id="water3" class="onder"></div>
+    </div>
+
+
+
+    <script>
+    function start() {
+        document.getElementById("water1").classList.add("leeg")
+        document.getElementById("water2").classList.add("vol")
+        setTimeout(function() {
+            document.getElementById("water2").classList.add("leeg")
+
+            setTimeout(function() {
+                document.getElementById("water3").classList.add("leeg")
+                document.getElementById("water1").classList.add("vol")
+                start();
+            },2000)
+        },2000)
+
+
+    }
+
+
+</script>
+
+</body>
+</html>

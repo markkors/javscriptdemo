@@ -26,7 +26,21 @@
         .red {color: red}
 
         i {
-            font-size: 5em ;
+            font-size: 2em ;
+
+        }
+
+        .abs {
+            position: absolute;
+        }
+
+        .qm {
+            position: absolute;
+            font-size: 3em;
+        }
+
+        .cell {
+            position: relative;
         }
     </style>
     <script src="https://kit.fontawesome.com/d60d30384a.js" crossorigin="anonymous"></script>
@@ -82,27 +96,34 @@ function initBoard() {
             row.setAttribute("class","row");
         }
         let cell = document.createElement("div");
-        cell.setAttribute("class","red")
+        cell.setAttribute("class","cell");
+        cell.setAttribute("id",i)
         cell.addEventListener("click",function(event) {
-            toggle(event.target)
-        })
-        let i_e = document.createElement("i");
-        i_e.setAttribute("class",boarddata[i].name)
-        i_e.setAttribute("id",i)
-
-       /* i_e.addEventListener("click",function(event) {
             //console.log(event.target)
-            getItem(event.target.id)
-        });*/
+            getItem(cell)
+        });
+
+        let i_e = document.createElement("i");
+        i_e.setAttribute("class",boarddata[i].name);
+        i_e.classList.add("abs");
+        i_e.setAttribute("id",i)
         cell.appendChild(i_e)
+
+        i_e = document.createElement("i");
+        i_e.setAttribute("class","fa-sharp fa-solid fa-question");
+        i_e.classList.add("qm");
+        i_e.setAttribute("id",i)
+        cell.appendChild(i_e)
+
+
         row.appendChild(cell);
         eboard.appendChild(row);
     }
 
 }
 
-function getItem(i) {
-    console.log(boarddata[i]);
+function getItem(e) {
+    console.log(boarddata[e.id]);
 }
 
 function toggle(e) {

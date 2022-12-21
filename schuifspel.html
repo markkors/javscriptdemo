@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Schuifspel</title>
+    <style>
+        #game {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .cell {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+<div id="game"></div>
+
+<script>
+    let board = document.getElementById("game");
+    let last_select;
+    let target;
+
+    let gamedata = [
+        {nr:1,data:null,r:-1,c:-1},
+        {nr:2,data:null,r:-1,c:-1},
+        {nr:3,data:null,r:-1,c:-1},
+        {nr:4,data:null,r:-1,c:-1},
+        {nr:5,data:null,r:-1,c:-1},
+        {nr:6,data:null,r:-1,c:-1},
+        {nr:7,data:null,r:-1,c:-1},
+        {nr:8,data:null,r:-1,c:-1},
+        {nr:9,data:null,r:-1,c:-1},
+        {nr:10,data:null,r:-1,c:-1},
+        {nr:11,data:null,r:-1,c:-1},
+        {nr:12,data:null,r:-1,c:-1},
+        {nr:13,data:null,r:-1,c:-1},
+        {nr:14,data:null,r:-1,c:-1},
+        {nr:15,data:null,r:-1,c:-1},
+        {nr:null,data:null,r:-1,c:-1},
+    ];
+
+function initBoard() {
+    let counter = 0;
+    for(let r=0;r<gamedata.length/4;r++){
+        let row = document.createElement("div");
+        row.setAttribute("class","row")
+        for(c=0;c<gamedata.length/4;c++) {
+            let cell = document.createElement("div");
+            cell.setAttribute("col",c);
+            cell.setAttribute("row",r);
+            cell.innerText= gamedata[counter].nr;
+            gamedata[counter].r=r;
+            gamedata[counter].c=c;
+            cell.classList.add("cell");
+            cell.addEventListener("click",function(event){
+                selectItem(cell);
+            })
+            row.appendChild(cell);
+            counter++
+        }
+        board.appendChild(row);
+    }
+}
+
+function updateBoard() {
+
+}
+
+function selectItem(e) {
+
+    let r = e.getAttribute("row");
+    let c = e.getAttribute("col");
+
+    let temp = gamedata.find(item => item.r == r && item.c == c);
+    if (temp.nr != null) {
+        if(last_select === temp) {
+            console.log("not a valid target");
+        } else {
+            last_select = temp;
+            console.log("select valid target");
+        }
+    } else {
+        console.log("this is the empty one")
+    }
+
+}
+
+document.addEventListener("DOMContentLoaded",function (){
+    initBoard();
+});
+
+</script>
+
+
+</body>
+</html>

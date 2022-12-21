@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .bgred {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div id="myitem" >dit is een div</div>
+
+
+
+<script>
+document.querySelector("#myitem").addEventListener("click",function() {
+    document.querySelector("#myitem").classList.toggle("bgred");
+
+})
+
+</script>
+
+</body>
+</html>
