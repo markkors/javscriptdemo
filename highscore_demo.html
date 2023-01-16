@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Highscore demo</title>
+    <script src="js/cookiefuncties.js"></script>
+</head>
+<body>
+<h1>Highscore demo</h1>
+
+<script>
+
+    document.addEventListener("DOMContentLoaded",function (){
+        let hs = JSON.parse(leesCookie("highscore"));
+        if(hs != null) {
+            console.log("highscore: " + hs);
+        } else {
+            console.log("geen highscore");
+            hs=[];
+        }
+
+        let name = prompt("Geef je naam in:");
+        let score = parseInt(prompt("Geef je score in:"));
+
+        let highscore = {
+            name: name,
+            score: score
+        };
+
+        hs.push(highscore);
+
+        maakCookie("highscore", JSON.stringify(hs), 1);
+        score=hs.sort((a,b) => (a.score < b.score) ? 1 : -1);
+        readHighscore(score);
+    });
+
+    function readHighscore(s) {
+        s.forEach(function (item) {
+            let li = document.createElement("li");
+            li.innerHTML = item.name + " " + item.score;
+            document.querySelector("#scorelist").appendChild(li);
+        });
+   }
+
+</script>
+
+<ul id="scorelist"></ul>
+
+</body>
+</html>

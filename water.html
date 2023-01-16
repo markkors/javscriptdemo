@@ -39,27 +39,27 @@
           /*  border-left: 2px solid black;
             border-right: 2px solid black;
             border-bottom: 2px solid black;*/
-           /* background-image: url("images/glas.png");
+            background-image: url("images/glas.png");
             background-size: cover;
-            background-repeat: no-repeat;*/
+            background-repeat: no-repeat;
             width: 75px;
             height: 125px;
+
         }
 
-        .bucket::before {
+        /*.bucket::before {
             content: '';
             background: url('images/glas.png') no-repeat center center/cover;
-            position: absolute;
             top: 0px;
             left: 0px;
             width: 75px;
             height: 125px;
             z-index: -1;
-        }
+        }*/
 
 
         .bucket:has(.water) {
-            border: 1px solid black;
+            border: 2px dashed black;
             border-radius: 10px;
         }
 
@@ -68,21 +68,27 @@
             z-index: -2;
             transform-origin: bottom left;
             transform: scaleY(0);
-            width: 70px;
-            height: 123px;
+            width: 75px;
+            height: 125px;
             background-color: aqua;
-
+            transition: transform 2s;
+            transition-property: transform;
+            transition-timing-function: cubic-bezier(.07,1.03,.81,1.01);
         }
 
         .fill {
+            /*
             transition-property: all;
             transition-duration: 2s;
+            */
             transform: scaleY(1);
         }
 
         .empty {
+            /*
             transition-property: all;
             transition-duration: 2s;
+            */
             transform: scaleY(0);
         }
 
