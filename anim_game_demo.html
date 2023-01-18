@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Anim Demo Javascript</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+
+        @keyframes moveblock {
+            0% {
+                left:0px
+            }
+            100% {
+                left:calc(100vw - 100px);
+            }
+        }
+
+        @keyframes movearrow {
+            0% {
+                top:100vh
+            }
+            100% {
+                top: -50px;
+            }
+        }
+
+
+        .blokje {
+            box-sizing: border-box;
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            position: relative;
+
+        }
+
+        .doanim_block {
+            animation-name: moveblock;
+            animation-duration: 2s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            /*animation-fill-mode: forwards;*/
+            animation-play-state: paused;
+        }
+
+        .doanim_arrow {
+            animation-name: movearrow;
+            animation-duration: 1s;
+            animation-timing-function:linear;
+
+        }
+
+        .arrow {
+            position: absolute;
+            top: 90vh;
+            left:50vw;
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+
+
+        }
+
+        .up {
+            transform: rotate(-135deg);
+            -webkit-transform: rotate(-135deg);
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="blokje doanim_block"></div>
+<div class="arrow up"></div>
+
+<button onclick="start()">start</button>
+<button onclick="fire()">fire</button>
+<div id="score"></div>
+<script>
+    let timer = null;
+    let left = null;
+    let _top = null;
+    let score = 0;
+    /***
+     * start animatie
+     */
+    function start() {
+        let e = document.querySelector(".blokje");
+        e.style.backgroundColor = "white";
+        let a = document.querySelector(".arrow");
+        a.classList.remove("doanim_arrow");
+        if(timer!==null){
+            clearInterval(timer);
+            e.style.animationPlayState="paused";
+            e.style.left = left
+            timer = null;
+            return;
+        };
+        e.style.animationPlayState="running";
+        timer = setInterval(function() {
+            if(checkCollision(e,a)) {
+                console.log("collision")
+                clearInterval(timer);
+                e.style.animationPlayState="paused";
+                e.style.left = left
+                e.style.backgroundColor = "red";
+                a.classList.remove("doanim_arrow");
+                timer = null;
+                score++
+                document.getElementById("score").innerHTML = score;
+                return;
+            }
+
+            /*
+             * check of blokje buiten scherm is
+             */
+            if(getNumberFromPixel(getComputedStyle(a).top)<=0) {
+                console.log("arrow out of screen")
+                a.classList.remove("doanim_arrow");
+            }
+
+
+        }, 10);
+
+    }
+
+    /***
+     * Shoot an arrow
+     */
+    function fire() {
+        let e = document.querySelector(".blokje");
+
+        if(e.style.animationPlayState==="paused" || e.style.animationPlayState==="") {
+            start();
+        }
+
+
+        let a = document.querySelector(".arrow");
+        if(a.style.animationPlayState==="running" || a.classList.contains("doanim_arrow")) {
+            a.classList.remove("doanim_arrow");
+            return;
+        }
+        a.classList.add("doanim_arrow");
+    }
+
+    /***
+     * Check if the arrow and the block collide
+     * @param e
+     * @param a
+     * @returns {boolean}
+     */
+    function checkCollision(e,a){
+        let x_pos_sq_1 = getNumberFromPixel(getComputedStyle(e).left) ;
+        let y_pos_sq_1 = getNumberFromPixel(getComputedStyle(e).top);
+
+        let x_pos_sq_2 = getNumberFromPixel(getComputedStyle(a).left) ;
+        let y_pos_sq_2 = getNumberFromPixel(getComputedStyle(a).top);
+
+        let leftPos = x_pos_sq_1 + getNumberFromPixel(getComputedStyle(e).width) > x_pos_sq_2 - getNumberFromPixel(getComputedStyle(a).width);
+        let rightPos = x_pos_sq_1 - getNumberFromPixel(getComputedStyle(e).width) < x_pos_sq_2 + getNumberFromPixel(getComputedStyle(a).width);
+
+        let topPos = y_pos_sq_1 + getNumberFromPixel(getComputedStyle(e).height) > y_pos_sq_2 - getNumberFromPixel(getComputedStyle(a).height);
+        let bottomPos = y_pos_sq_1 - getNumberFromPixel(getComputedStyle(e).height) < y_pos_sq_2 + getNumberFromPixel(getComputedStyle(a).height);
+
+
+        if(leftPos && rightPos && topPos && bottomPos){
+            return true
+        }
+        else{
+            return false;
+
+        }
+    }
+
+
+    function getNumberFromPixel(pixel){
+        return Number(pixel.split("px")[0]);
+    }
+
+</script>
+
+</body>
+</html>
